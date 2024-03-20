@@ -1,0 +1,12 @@
+.img-fluid{
+  height: 180px
+  /*max-width: 210px;*/
+}
+
+.rounded-circle{
+  border-radius:100%;
+}
+
+.demo-masonry > div > div > a > h3 {
+  color: #0099CC;
+}

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo - Hadi Ubaidillah</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="./assets/favicon/site.webmanifest">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <style>
+    body {
+      margin-top: 20px;
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        min-width: 1260px;
+      }
+    }
+
+    .comparison-table {
+      width: 100%;
+      font-size: .875rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar
+    }
+
+    .comparison-table table {
+      min-width: 41rem;
+      table-layout: fixed
+    }
+
+    .comparison-table table tbody+tbody {
+      border-top-width: 1px
+    }
+
+    .comparison-table .table-bordered thead td {
+      border-bottom-width: 1px
+    }
+
+    .comparison-table .comparison-item {
+      position: relative;
+      padding: .875rem .75rem 1.125rem;
+      border: 1px solid #e7e7e7;
+      background-color: #fff;
+      text-align: center
+    }
+
+    .comparison-table .comparison-item .comparison-item-thumb {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      /*margin-bottom: .75rem;*/
+    }
+
+    .comparison-table .comparison-item .comparison-item-thumb>img {
+      /*width: 100%;*/
+      min-height: 10rem;
+      max-height: 10rem;
+    }
+
+    .comparison-table .comparison-item .comparison-item-title {
+      display: block;
+      width: 100%;
+      margin-top: .75rem;
+      margin-bottom: 10px;
+      color: #222;
+      font-weight: 600;
+      text-decoration: none
+    }
+
+    .comparison-table .comparison-item .comparison-item-title:hover {
+      text-decoration: underline
+    }
+
+    .comparison-table .comparison-item .btn {
+      margin: 0
+    }
+
+    .comparison-table .comparison-item .remove-item {
+      display: block;
+      position: absolute;
+      top: -.3125rem;
+      right: -.3125rem;
+      width: 1.375rem;
+      height: 1.375rem;
+      border-radius: 50%;
+      background-color: #f44336;
+      color: #fff;
+      text-align: center;
+      cursor: pointer
+    }
+
+    .comparison-table .comparison-item .remove-item .feather {
+      width: .875rem;
+      height: .875rem
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #e7e7e7;
+    }
+
+    .bg-secondary {
+      background-color: #f7f7f7 !important;
+    }
+
+    .carousel-item img {
+      cursor: zoom-in;
+      min-height: 168px;
+      max-height: 168px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container pb-5 mb-2">
+  <div class="comparison-table">
+    <table class="table table-bordered">
+      <thead class="bg-secondary">
+      <tr>
+        <td class="align-middle">
+          <select class="form-control custom-select" id="compare-criteria" data-filter="trigger">
+            <option value="all">Comparison criteria *</option>
+            <option value="summary">Summary</option>
+            <option value="back-end">Back-End</option>
+            <option value="front-end">Front-End</option>
+            <option value="server">Server</option>
+          </select>
+          <small class="form-text text-muted">* Choose criteria to filter table below.</small>
+        </td>
+        <td>
+          <div class="comparison-item">
+
+              <div id="project1" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#project1" data-slide-to="0" class="active"></li>
+                  <li data-target="#project1" data-slide-to="1"></li>
+                  <li data-target="#project1" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active"><img src="https://picsum.photos/id/1015/1600/1034" class="d-block w-100" alt="Image 1" data-fancybox="project1"></div>
+                  <div class="carousel-item"><img src="https://picsum.photos/id/1016/1600/1034" class="d-block w-100" alt="Image 2" data-fancybox="project1"></div>
+                  <div class="carousel-item"><img src="https://picsum.photos/id/1018/1600/1034" class="d-block w-100" alt="Image 2" data-fancybox="project1"></div>
+                </div>
+                <a class="carousel-control-prev" href="#project1" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
+                <a class="carousel-control-next" href="#project1" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span></a>
+              </div>
+
+            <a class="comparison-item-title" href="https://github.com/hadiubaidillah/task/">Task List</a>
+            <a class="btn btn-pill btn-outline-primary btn-sm mt-1" target="_blank" href="https://hadiubaidillah.com/task/"><i class="fa-solid fa-eye"></i> Demo</a>
+            <a class="btn btn-pill btn-outline-primary btn-sm mt-1" target="_blank" href="https://github.com/hadiubaidillah/spring-boot-microservices"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="btn btn-pill btn-outline-primary btn-sm mt-1" target="_blank" href="https://hadiubaidillah.com/todo"><i class="fa-brands fa-youtube"></i> YouTube</a>
+          </div>
+        </td>
+        <td>
+          <div class="comparison-item">
+            <div id="project2" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#project2" data-slide-to="0" class="active"></li>
+                <li data-target="#project2" data-slide-to="1"></li>
+                <li data-target="#project2" data-slide-to="2"></li>
+                <li data-target="#project2" data-slide-to="3"></li>
+                <li data-target="#project2" data-slide-to="4"></li>
+                <li data-target="#project2" data-slide-to="5"></li>
+                <li data-target="#project2" data-slide-to="6"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active"><img src="https://github.com/hadiubaidillah/todo/blob/main/.github/list.png?raw=true" class="d-block w-100" alt="Image 1" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/login_required.png?row=true" class="d-block w-100" alt="Image 2" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/register.png?row=true" class="d-block w-100" alt="Image 2" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/login.png?row=true" class="d-block w-100" alt="Image 2" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/create.png?row=true" class="d-block w-100" alt="Image 3" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/n1.png?row=true" class="d-block w-100" alt="Image 4" data-fancybox="project2"></div>
+                <div class="carousel-item"><img src="https://github.com/hadiubaidillah/todo/raw/main/.github/n2.png?row=true" class="d-block w-100" alt="Image 5" data-fancybox="project2"></div>
+              </div>
+              <a class="carousel-control-prev" href="#project2" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
+              <a class="carousel-control-next" href="#project2" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span></a>
+            </div>
+            <a class="comparison-item-title" href="https://github.com/hadiubaidillah/task/">To Do List</a>
+            <a class="btn btn-pill btn-outline-primary btn-sm mt-1" target="_blank" href="https://hadiubaidillah.com/todo/"><i class="fa-solid fa-eye"></i> Demo</a>
+            <a class="btn btn-pill btn-outline-primary btn-sm mt-1" target="_blank" href="https://github.com/hadiubaidillah/todo"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </td>
+        <td>
+          <div class="comparison-item">
+            <a class="comparison-item-thumb" style="cursor:pointer">
+              <img src="https://st.depositphotos.com/2274151/2584/i/450/depositphotos_25849987-stock-photo-confidential-stamp.jpg" style="min-height:10.4rem;" alt="28 Successful Projects + Updates">
+            </a>
+            <a class="comparison-item-title" style="cursor:pointer">28 Successful Projects + Updates</a>
+            <button class="btn btn-pill btn-outline-primary btn-sm mt-1" type="button" disabled><i class="fa-solid fa-eye-slash"></i> Confidential</button>
+          </div>
+        </td>
+      </tr>
+      </thead>
+      <tbody id="summary" data-filter="target">
+      <tr class="bg-secondary">
+        <th class="text-uppercase">Summary</th>
+        <td><span class="text-dark font-weight-semibold">Task List</span></td>
+        <td><span class="text-dark font-weight-semibold">To Do List</span></td>
+        <td><span class="text-dark font-weight-semibold">28 Successful Projects + Updates</span></td>
+      </tr>
+      <tr>
+        <th>Back-End</th>
+        <td>Spring Framework (Java)</td>
+        <td>Spring Framework (Kotlin)</td>
+        <td>Spring, .NET, NestJs, CI and Laravel</td>
+      </tr>
+      <tr>
+        <th>Front-End</th>
+        <td>ReactJs</td>
+        <td>ReactJs</td>
+        <td>ReactJs/Native, AngularJS and jQuery</td>
+      </tr>
+      <tr>
+        <th>Server</th>
+        <td>AWS (Amazon Web Services)</td>
+        <td>Alibaba Cloud</td>
+        <td>Private Cloud</td>
+      </tr>
+      </tbody>
+      <tbody id="back-end" data-filter="target">
+      <tr class="bg-secondary">
+        <th class="text-uppercase">Back-End</th>
+        <td><span class="text-dark font-weight-semibold">Task List</span></td>
+        <td><span class="text-dark font-weight-semibold">To Do List</span></td>
+        <td><span class="text-dark font-weight-semibold">28 Successful Projects + Updates</span></td>
+      </tr>
+      <tr>
+        <th>Programming Language</th>
+        <td>Java 21</td>
+        <td>Kotlin 1.9.20</td>
+        <td>Java, C#, JS, Python and PHP</td>
+      </tr>
+      <tr>
+        <th>Build Automation Tool</th>
+        <td>Maven</td>
+        <td>Gradle</td>
+        <td>Maven, Gradle, NPM, and PIPENV</td>
+      </tr>
+      <tr>
+        <th>Identity Access Management</th>
+        <td>Keycloak 23.0.6</td>
+        <td>Keycloak 23.0.3</td>
+        <td>Keycloak 18.0.0 and Spring Security</td>
+      </tr>
+      <tr>
+        <th>Database</th>
+        <td>MongoDB, MySQL and Postgres SQL</td>
+        <td>Postgres SQL</td>
+        <td>Oracle, MySQL, MongoDB and MS SQL</td>
+      </tr>
+      <tr>
+        <th>Message Broker/Notification</th>
+        <td>Apache Kafka</td>
+        <td>RabbitMQ</td>
+        <td>Apache Kafka, RabbitMQ</td>
+      </tr>
+      <tr>
+        <th>Spring Framework</th>
+        <td>Spring Framework 6.1.3</td>
+        <td>Spring Framework 6.1.0</td>
+        <td>Spring Framework 4.3.8 and 5.6.5</td>
+      </tr>
+      <tr>
+        <th>Spring Boot</th>
+        <td>Spring Boot 3.2.2</td>
+        <td>Spring Boot 3.2.0</td>
+        <td>Spring Boot 1.5.11 and 2.7.18</td>
+      </tr>
+      <tr>
+        <th>Spring Cloud</th>
+        <td>Spring Cloud 2023.0.0</td>
+        <td>Spring Cloud 2023.0.0</td>
+        <td>Spring Cloud Edgware and 2021.0.x</td>
+      </tr>
+      <tr>
+        <th>Spring Registration Discovery</th>
+        <td>Netflix Eureka 4.1.0</td>
+        <td>Netflix Eureka 4.1.0</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Spring Config</th>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Spring Actuator</th>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Spring Circuit Breaker</th>
+        <td>Resilience4j</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Load Balancing</th>
+        <td>Application Load Balancer</td>
+        <td>No</td>
+        <td>Application and Server Load Balancer</td>
+      </tr>
+      <tr>
+        <th>Test</th>
+        <td>Test Container, Unit Testing</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Monitoring</th>
+        <td>Grafana, Prometheus</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Tracing</th>
+        <td>Grafana Tempo, Zipkin</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Logging</th>
+        <td>Grafana Loki</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      </tbody>
+      <tbody id="front-end" data-filter="target">
+      <tr class="bg-secondary">
+        <th class="text-uppercase">Front-End</th>
+        <td><span class="text-dark font-weight-semibold">Task List</span></td>
+        <td><span class="text-dark font-weight-semibold">To Do List</span></td>
+        <td><span class="text-dark font-weight-semibold">28 Successful Projects + Updates</span></td>
+      </tr>
+      <tr>
+        <th>Framework/Library</th>
+        <td>ReactJs</td>
+        <td>ReactJs</td>
+        <td>ReactJs/Native, AngularJS and jQuery</td>
+      </tr>
+      <tr>
+        <th>Programming Language</th>
+        <td>TypeScript</td>
+        <td>TypeScript</td>
+        <td>TypeScript/JavaScript/Thymeleaf</td>
+      </tr>
+      <tr>
+        <th>Build Automation Tool</th>
+        <td>NPM</td>
+        <td>NPM</td>
+        <td>NPM (Partially)</td>
+      </tr>
+      <tr>
+        <th>UI Template</th>
+        <td>Chakra-UI</td>
+        <td>Chakra-UI</td>
+        <td>Chakra-UI, Bootstrap, Material Design</td>
+      </tr>
+      </tbody>
+      <tbody id="server" data-filter="target">
+      <tr class="bg-secondary">
+        <th class="text-uppercase">Server</th>
+        <td><span class="text-dark font-weight-semibold">Task List</span></td>
+        <td><span class="text-dark font-weight-semibold">To Do List</span></td>
+        <td><span class="text-dark font-weight-semibold">28 Successful Projects + Updates</span></td>
+      </tr>
+      <tr>
+        <th>Server Provider</th>
+        <td>AWS (Amazon Web Services)</td>
+        <td>Alibaba Cloud</td>
+        <td>Private Cloud</td>
+      </tr>
+      <tr>
+        <th>Kubernetes</th>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Docker</th>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (Partially)</td>
+      </tr>
+      <tr>
+        <th>Web Server</th>
+        <td>Apache Tomcat (Built-In)</td>
+        <td>Apache Tomcat (Built-In)</td>
+        <td>Apache, Apache Tomcat, Nginx and Jetty</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('[data-filter="trigger"]').on("change", function() {
+      var t = $(this).find("option:selected").val().toLowerCase();
+      $('[data-filter="target"]').css("display", "none");
+      $("#" + t).css("display", "table-row-group");
+      if (t == "all") {
+        $('[data-filter="target"]').css("display", "table-row-group")
+      }
+      $(this).css("display", "block");
+    });
+  });
+  $(document).ready(function(){
+    $('[data-fancybox="project1"]').fancybox({
+      loop: true,
+      buttons: ["zoom", "slideShow", "fullScreen", "thumbs", "close"],
+      animationEffect: "fade",
+    });
+    $('[data-fancybox="project2"]').fancybox({
+      loop: true,
+      buttons: ["zoom", "slideShow", "fullScreen", "thumbs", "close"],
+      animationEffect: "fade",
+    });
+  });
+</script>
+</body>
+</html>
