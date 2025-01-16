@@ -794,7 +794,7 @@ ul.social-links li:last-child a {
 .client_block {
   text-align: center;
   padding: 5px 0;
-  opacity: 0.8;
+  opacity: 1;
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
 }
