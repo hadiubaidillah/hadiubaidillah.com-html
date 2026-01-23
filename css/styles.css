@@ -10,3 +10,67 @@
 .demo-masonry > div > div > a > h3 {
   color: #0099CC;
 }
+
+.border-thin {
+  border: 1px solid rgba(0, 0, 0, 0.1)
+}
+.box-glow {
+  /*border: 1px solid rgba(0, 0, 0, 0.1);*/
+  animation: glowChange 1.5s infinite;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+@keyframes glowChange {
+  0% {
+    box-shadow: 0 1px 5px rgba(150, 150, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 1px 5px rgba(150, 150, 0, 0.7);
+  }
+}
+
+.img-shine-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%; /* untuk rounded-circle */
+  margin: -4px 0 -4px 0;
+}
+
+.img-shine-wrapper img {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.img-shine-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 3s infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(100%);
+  }
+  100% {
+    transform: translateX(100%) translateY(-100%);
+  }
+}

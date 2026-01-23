@@ -172,11 +172,11 @@
 
     });
     
-    // Animate page loader
+/*    // Animate page loader
     $(window).on('load', function() {
         $(".preloader").fadeOut("slow");
     });
-
+*/
     // Mobile menu hide
     $(window).on('resize', function() {
          mobileMenuHide();
