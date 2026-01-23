@@ -1,5 +1,8 @@
 <?php
 
+// Load configuration
+$config = require __DIR__ . '/config.php';
+
 // configure
 $from = 'Hadi Ubaidillah <ubaycreative@gmail.com>';
 $sendTo = 'hadiubaidillahx@gmail.com';
@@ -11,8 +14,8 @@ $errorMessage = 'There was an error while submitting the form. Please try again 
 // let's do the sending
 
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])):
-    //your site secret key
-    $secret = '6LdqmCAUAAAAANONcPUkgVpTSGGqm60cabVMVaON';
+    //your site secret key from config
+    $secret = $config['recaptcha_secret'];
     //get verify response data
 
     $c = curl_init('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
