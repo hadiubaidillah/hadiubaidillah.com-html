@@ -1,0 +1,9 @@
+# Configuration files with sensitive data
+contact_form/config.php
+
+# IDE files
+*.iml
+.idea/
+
+# OS files
+.DS_Store
