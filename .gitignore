@@ -1,6 +1,11 @@
 # Configuration files with sensitive data
 contact_form/config.php
 
+# Composer
+contact_form/vendor/
+contact_form/composer.phar
+contact_form/composer.lock
+
 # IDE files
 *.iml
 .idea/

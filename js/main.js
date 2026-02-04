@@ -7,6 +7,16 @@
 
 (function($) {
 "use strict";
+
+    // Responsive link handler (desktop vs mobile URL)
+    $(document).ready(function() {
+        $('#water-refill-link').on('click', function(e) {
+            e.preventDefault();
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+            var url = isMobile ? $(this).data('mobile-url') : $(this).data('desktop-url');
+            window.open(url, '_blank');
+        });
+    });
     
     // Portfolio subpage filters
     function portfolio_init() {
@@ -37,38 +47,47 @@
     }
     // /Portfolio subpage filters
 
-    // Contact form validator
-    $(function () {
+    // Contact form
+    // reCAPTCHA callback function
+    window.correctCaptcha = function(response) {
+        // reCAPTCHA verified
+    };
 
-        $('#contact-form').validator();
-
+    $(document).ready(function () {
         $('#contact-form').on('submit', function (e) {
-            if (!e.isDefaultPrevented()) {
-                var url = "contact_form/contact_form.php";
+            e.preventDefault();
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: $(this).serialize(),
-                    success: function (data)
-                    {
-                        var messageAlert = 'alert-' + data.type;
-                        var messageText = data.message;
+            var $form = $(this);
+            var $messages = $form.find('.messages');
 
-                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                        if (messageAlert && messageText) {
-                            $('#contact-form').find('.messages').html(alertBox);
-                            if (messageAlert == "alert-success") {
-                                $('#contact-form')[0].reset();
-                            }
+            $.ajax({
+                type: "POST",
+                url: "contact_form/contact_form.php",
+                data: $form.serialize(),
+                dataType: "json",
+                beforeSend: function() {
+                    $messages.html('<div class="alert alert-info">Sending message...</div>');
+                },
+                success: function (response) {
+                    var alertClass = (response.type === 'success') ? 'alert-success' : 'alert-danger';
+                    var alertBox = '<div class="alert ' + alertClass + '">' + response.message + '</div>';
+                    $messages.html(alertBox);
+
+                    if (response.type === 'success') {
+                        $form[0].reset();
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
                         }
                     }
-                });
-                return false;
-            }
+                },
+                error: function (xhr, status, error) {
+                    $messages.html('<div class="alert alert-danger">Error sending message. Please try again.</div>');
+                    console.log('Error:', error);
+                }
+            });
         });
     });
-    // /Contact form validator
+    // /Contact form
 
     // Hide Mobile menu
     function mobileMenuHide() {
