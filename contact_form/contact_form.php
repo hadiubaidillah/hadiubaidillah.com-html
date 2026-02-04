@@ -1,83 +1,92 @@
 <?php
+// Suppress HTML error output, return JSON only
+error_reporting(0);
+ini_set('display_errors', 0);
+header('Content-Type: application/json');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Load PHPMailer
+require __DIR__ . '/vendor/autoload.php';
 
 // Load configuration
 $config = require __DIR__ . '/config.php';
 
-// configure
-$from = 'Hadi Ubaidillah <ubaycreative@gmail.com>';
+// Configure
 $sendTo = 'hadiubaidillahx@gmail.com';
 $subject = 'New message from contact form';
-$fields = array('name' => 'Name', 'email' => 'Email', 'message' => 'Message'); // array variable name => Text to appear in the email
+$fields = array('name' => 'Name', 'email' => 'Email', 'message' => 'Message');
 $okMessage = 'Contact form successfully submitted. Thank you, I will get back to you soon!';
 $errorMessage = 'There was an error while submitting the form. Please try again later';
 
-// let's do the sending
+// Response function
+function sendResponse($type, $message) {
+    echo json_encode(['type' => $type, 'message' => $message]);
+    exit;
+}
 
-if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])):
-    //your site secret key from config
-    $secret = $config['recaptcha_secret'];
-    //get verify response data
+// Check reCAPTCHA
+if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+    sendResponse('danger', 'Please click on the reCAPTCHA box.');
+}
 
-    $c = curl_init('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    $verifyResponse = curl_exec($c);
+// Verify reCAPTCHA
+$secret = $config['recaptcha_secret'];
+$c = curl_init('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+$verifyResponse = curl_exec($c);
+curl_close($c);
 
-    $responseData = json_decode($verifyResponse);
-    if($responseData->success):
+$responseData = json_decode($verifyResponse);
+if (!$responseData || !$responseData->success) {
+    sendResponse('danger', 'Robot verification failed, please try again.');
+}
 
-        try
-        {
-            $emailText = nl2br("You have new message from Contact Form\n");
-
-            foreach ($_POST as $key => $value) {
-
-                if (isset($fields[$key])) {
-                    $emailText .= nl2br("$fields[$key]: $value\n");
-                }
-            }
-
-            $headers = array('Content-Type: text/html; charset="UTF-8";',
-                'From: ' . $from,
-                'Reply-To: ' . $from,
-                'Return-Path: ' . $from,
-            );
-            
-            mail($sendTo, $subject, $emailText, implode("\n", $headers));
-
-            $responseArray = array('type' => 'success', 'message' => $okMessage);
+// Send email
+try {
+    // Build email content
+    $emailText = "You have new message from Contact Form<br><br>";
+    foreach ($_POST as $key => $value) {
+        if (isset($fields[$key])) {
+            $emailText .= "<strong>$fields[$key]:</strong> " . htmlspecialchars($value) . "<br>";
         }
-        catch (\Exception $e)
-        {
-            $responseArray = array('type' => 'danger', 'message' => $errorMessage);
-        }
+    }
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            $encoded = json_encode($responseArray);
+    // Get sender info
+    $senderEmail = isset($_POST['email']) ? $_POST['email'] : '';
+    $senderName = isset($_POST['name']) ? $_POST['name'] : 'Website Visitor';
 
-            header('Content-Type: application/json');
+    // Create PHPMailer instance
+    $mail = new PHPMailer(true);
 
-            echo $encoded;
-        }
-        else {
-            echo $responseArray['message'];
-        }
+    // SMTP Configuration
+    $mail->isSMTP();
+    $mail->Host       = $config['smtp']['host'];
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $config['smtp']['username'];
+    $mail->Password   = $config['smtp']['password'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = $config['smtp']['port'];
 
-    else:
-        $errorMessage = 'Robot verification failed, please try again.';
-        $responseArray = array('type' => 'danger', 'message' => $errorMessage);
-        $encoded = json_encode($responseArray);
+    // Recipients
+    $mail->setFrom($config['smtp']['from_email'], $config['smtp']['from_name']);
+    $mail->addAddress($sendTo);
 
-            header('Content-Type: application/json');
+    // Reply to sender's email
+    if (!empty($senderEmail)) {
+        $mail->addReplyTo($senderEmail, $senderName);
+    }
 
-            echo $encoded;
-    endif;
-else:
-    $errorMessage = 'Please click on the reCAPTCHA box.';
-    $responseArray = array('type' => 'danger', 'message' => $errorMessage);
-    $encoded = json_encode($responseArray);
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = $subject;
+    $mail->Body    = $emailText;
+    $mail->AltBody = strip_tags(str_replace('<br>', "\n", $emailText));
 
-            header('Content-Type: application/json');
+    $mail->send();
+    sendResponse('success', $okMessage);
 
-            echo $encoded;
-endif;
-
+} catch (Exception $e) {
+    sendResponse('danger', $errorMessage);
+}
