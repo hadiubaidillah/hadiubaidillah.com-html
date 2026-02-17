@@ -16,6 +16,9 @@
             var url = isMobile ? $(this).data('mobile-url') : $(this).data('desktop-url');
             window.open(url, '_blank');
         });
+        $('#cvContactBtn').on('click', function () {
+          document.querySelector('[data-goto="5"]').click();
+        });
     });
     
     // Portfolio subpage filters

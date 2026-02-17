@@ -103,23 +103,10 @@
               <div class="general-info">
                 <!-- <h3>I am Senior Application Developer @ PT. Mitra Integrasi Informatika</h3>-->
                 <h3>Senior Software Developer</h3>
-                <p>I am 28 years old and have 10+ years of experience Java Spring Boot Framework. Specialize in backend development using Spring Boot, Spring Cloud, Spring MVC, Hibernate and MyBatis. Available as a Full-stack developer with Angular.js, React.js and jQuery.</p>
-                <p>Has great motivation to learn new skills/technologies, excellent problem-solving skills, fast-learner, resourceful, comitted, hardworker and self-motivated. Productive and responsible, willing to learn and able to handle any given tasks. Excellent communication, interpersonal and organization skills. Enable to work effectively and professionally in team as well as independently.</p>
+                <p>I am 28 years old with <b>10+ years of experience</b> Full-Stack Java/Kotlin Developer. Backend expert with Spring Boot. Skilled in Angular & React.js. Building robust & scalable applications.</p>
+                <p>Fast learner with strong problem-solving skills, adaptable, and effective both independently and in teams.</p>
               </div>
             </div>
-
-            <!--<div class="col-sm-4 col-md-4 subpage-block">
-              <div class="block end">
-                <ul class="info-list">
-                  <li><span class="title">Name</span><span class="value">Alex Smith</span></li>
-                  <li><span class="title">Age</span><span class="value">29</span></li>
-                  <li><span class="title">Address</span><span class="value">88 Street - State, Town</span></li>
-                  <li><span class="title">e-mail</span><span class="value"><a href="mailto:email@addres.com">email@addres.com</a></span></li>
-                  <li><span class="title">Phone</span><span class="value">+0123 123 456 789</span></li>
-                  <li><span class="title">Freelance</span><span class="value available">Available</span></li>
-                </ul>
-              </div>
-            </div>-->
 
             <div class="col-sm-6 col-md-6 subpage-block">
               <div class="block-title">
@@ -539,7 +526,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-12">
               <div class="download-cv-block">
-                <a class="button" target="_blank" href="files/CV%20Hadi%20Ubaidillah.pdf">Download CV</a>
+                <button class="button" data-toggle="modal" data-target="#cvModal">Download CV</button>
               </div>
             </div>
           </div>
@@ -1156,6 +1143,23 @@
     <!-- /Page changer wrapper -->
   </div>
   <!-- /Main Content -->
+</div>
+
+<!-- CV Modal -->
+<div class="modal fade" id="cvModal" tabindex="-1" role="dialog" aria-labelledby="cvModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content" style="border-radius: 8px; padding: 20px; text-align: center;">
+      <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" style="padding: 10px 30px 30px;">
+        <i class="pe-7s-icon pe-7s-lock" style="font-size: 48px; color: #FFC107; display: block; margin-bottom: 15px;"></i>
+        <h3 style="margin-bottom: 15px;">CV is Available Upon Request</h3>
+        <p style="font-size: 15px; color: #666;">I'd love to share my CV with you personally. Feel free to reach out and I'll send it right away!</p>
+        <button class="button btn-send" data-dismiss="modal" id="cvContactBtn" style="margin-top: 15px;">Contact Me</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
