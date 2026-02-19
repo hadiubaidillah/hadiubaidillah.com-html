@@ -866,7 +866,7 @@
             <!--  style="border: 1px solid green; box-shadow: 0px 0px 20px rgba(227, 173, 0, 0.7);" -->
             <div class="row">
               <div class="col-lg-3 col-sm-6 text-center mb-0">
-                <a class="hover" target="_blank" href="https://binance-trading-adapter.hadiubaidillah.com">
+                <a class="hover" target="_blank" href="https://binance-trading-adapter.hadiubaidillah.com" id="binance-link">
                   <div class="img-shine-wrapper box-glow border-thin">
                     <img class="rounded-circle responsive-img img-fluid d-block mx-auto" src="images/demo/binance-icon-seeklogo.svg" alt="Khione Trading">
                   </div>
@@ -1458,6 +1458,24 @@
   <!-- /Main Content -->
 </div>
 
+<!-- Binance Mobile Warning Modal -->
+<div class="modal fade" id="binanceModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <i class="pe-7s-icon pe-7s-monitor text-warning"></i>
+        <h4>Desktop Only</h4>
+        <p class="text-muted">This app is best experienced on a desktop browser. It may not display correctly on mobile.</p>
+        <button class="button btn-send" id="binanceContinueBtn">Continue Anyway</button>
+        <button class="button" data-dismiss="modal" style="margin-top: 8px;">Go Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CV Modal -->
 <div class="modal fade" id="cvModal" tabindex="-1" role="dialog" aria-labelledby="cvModalLabel">
   <div class="modal-dialog">
@@ -1488,6 +1506,18 @@
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/jquery.hoverdir.js"></script>
 <script src="js/main.js"></script>
+<script>
+  $('#binance-link').on('click', function (e) {
+    if (window.innerWidth < 992) {
+      e.preventDefault();
+      $('#binanceModal').modal('show');
+    }
+  });
+  $('#binanceContinueBtn').on('click', function () {
+    $('#binanceModal').modal('hide');
+    window.open('https://binance-trading-adapter.hadiubaidillah.com', '_blank');
+  });
+</script>
 
 </body>
 </html>
