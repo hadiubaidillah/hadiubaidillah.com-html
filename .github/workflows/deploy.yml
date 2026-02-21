@@ -18,6 +18,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /opt/home/hadiubaidillah/source/hadiubaidillah.com-html
+            cd /opt/home/hadiubaidillah/source/hadiubaidillah.github.io
             git fetch origin main
             git reset --hard origin/main
