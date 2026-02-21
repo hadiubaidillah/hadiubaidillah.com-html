@@ -65,7 +65,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "contact_form/contact_form.php",
+                url: "https://contact.hadiubaidillah.com",
                 data: $form.serialize(),
                 dataType: "json",
                 beforeSend: function() {
